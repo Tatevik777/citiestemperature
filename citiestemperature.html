@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Температура в разных городах</h1>
+    <div id="content"></div>
+
+   <script>
+    const cities=['Казань','Москва', 'Сочи','Санкт-Петербург']
+    let  textToPage ='';
+    function addTemperature(){
+            const citiesTemperature=cities.map((city)=>{
+                const temperature=prompt(`Введите температуру для города ${city}`,'-10');
+                return {name:city,temp:temperature};
+            })
+            let maxTemp = citiesTemperature[0];
+            let minTemp = citiesTemperature[0];
+        
+        for(let i = 0; i< citiesTemperature.length; i++){
+            textToPage=textToPage + `<h2>${citiesTemperature[i].name}</h2><br/><span>${citiesTemperature[i].temp}</span>`;
+            if(Number(citiesTemperature[i].temp)>Number(maxTemp.temp)){
+                maxTemp=citiesTemperature[i];
+            }
+            if(Number(citiesTemperature[i].temp)<Number(minTemp.temp)){
+                minTemp=citiesTemperature[i];
+            }
+        }
+           
+        document.getElementById('content').innerHTML=textToPage;
+        document.getElementById('content').innerHTML+= `<br>Максимальная температура: ${maxTemp.temp} в городе ${maxTemp.name}`;
+        document.getElementById('content').innerHTML+= `<br>Минимальная температура: ${minTemp.temp} в городе ${minTemp.name}`;
+    }
+        
+            addTemperature()  
+           
+   </script> 
+</body>
+</html>
